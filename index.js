@@ -40,22 +40,18 @@ function submitData (userName, userEmail) {
         },
         body: JSON.stringify(userData),
     };
-
-    console.log("confObj", configurationObject)
     
-    fetch 
-    fetch("http://localhost:3000/users", configurationObject)
+    return fetch("http://localhost:3000/users", configurationObject)
         .then(response => response.json())
         .then(serverData => {
-            console.log("srvDat", serverData.id)
-            
             const body = document.querySelector('body')
-            console.log(body)
             const para = document.createElement('p')
             body.appendChild(para);
-            para.textContent = serverData.id;
-            
-            
+            para.textContent = serverData.id;   
+        })
+        .catch((error) => {
+            document.body.append(error.message);
+            // console.log(error);
         })
 };
 
